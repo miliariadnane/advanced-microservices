@@ -41,4 +41,17 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     fetch-registry: true
     register-with-eureka: true
-
+  #self-preservation
+  instance:
+    lease-renewal-interval-in-seconds: 30 # default 30 ms
+    # indicates the frequency (in seconds) at which the client sends heartbeats to the server indicating that it's still alive
+    lease-expiration-duration-in-seconds: 90 # default 90 ms
+    # indicates the duration that the server waits for a heartbeat before it removes this instance from its view of the registry
+  server:
+    eviction-interval-timer-in-ms: 60000 # 60 seconds (60 * 1000)
+    # indicates the frequency (in milliseconds) at which the server checks for instances that have not renewed their leases and removes them from the registry
+    renewal-percent-threshold: 0.85 # default 0.85
+    # this value is used to calculate the expected % of heartbeats per minute eureka expects from all clients
+    renewal-threshold-update-interval-ms: 900000 # 900 seconds (15 * 60 * 1000)
+    # A scheduled task runs every 900 seconds to update the threshold
+    enable-self-preservation: true # default true
