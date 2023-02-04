@@ -9,13 +9,14 @@ import dev.nano.clients.payment.PaymentClient;
 import dev.nano.clients.payment.PaymentRequest;
 import dev.nano.clients.payment.PaymentResponse;
 import dev.nano.clients.product.ProductClient;
+import dev.nano.exception.domain.customer.CustomerNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static dev.nano.customer.CustomerConstant.CUSTOMER_NOT_FOUND_EXCEPTION;
+import static dev.nano.exception.constant.ExceptionConstant.CUSTOMER_NOT_FOUND_EXCEPTION_MESSAGE;
 
 @Service
 @AllArgsConstructor
@@ -36,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         if (customer == null) {
             log.error("Customer not found {}", id);
-            throw new CustomerNotFoundException(CUSTOMER_NOT_FOUND_EXCEPTION);
+            throw new CustomerNotFoundException(CUSTOMER_NOT_FOUND_EXCEPTION_MESSAGE);
         }
 
         return customerMapper.toDTO(customer);
@@ -87,7 +88,7 @@ public class CustomerServiceImpl implements CustomerService {
     public OrderResponse customerOrders(OrderRequest orderRequest) {
 
         customerRepository.findById(orderRequest.getCustomerId())
-                .orElseThrow(() -> new IllegalStateException("Customer not found"));
+                .orElseThrow(() -> new CustomerNotFoundException(CUSTOMER_NOT_FOUND_EXCEPTION_MESSAGE));
 
         productClient.getProduct(orderRequest.getProductId());
 
@@ -99,7 +100,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public PaymentResponse customerPayment(PaymentRequest paymentRequest) {
         customerRepository.findById(paymentRequest.getCustomerId())
-                .orElseThrow(() -> new IllegalStateException(CUSTOMER_NOT_FOUND_EXCEPTION));
+                .orElseThrow(() -> new CustomerNotFoundException(CUSTOMER_NOT_FOUND_EXCEPTION_MESSAGE));
 
         return paymentClient.createPayment(paymentRequest);
     }

@@ -1,14 +1,11 @@
-package dev.nano;
+package dev.nano.exception;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 import org.springframework.http.HttpStatus;
 
-import java.time.LocalDateTime;
-
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
-import static dev.nano.util.DateUtil.dateTimeFormatter;
 
 @Data
 @SuperBuilder

@@ -4,6 +4,7 @@ import dev.nano.clients.order.OrderRequest;
 import dev.nano.clients.order.OrderResponse;
 import dev.nano.clients.payment.PaymentRequest;
 import dev.nano.clients.payment.PaymentResponse;
+import dev.nano.exception.domain.customer.CustomerNotFoundException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,11 +13,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static dev.nano.customer.CustomerConstant.CUSTOMER_URI_REST_API;
-
 
 @RestController
-@RequestMapping(path = CUSTOMER_URI_REST_API)
+@RequestMapping(path = CustomerConstant.CUSTOMER_URI_REST_API)
 @AllArgsConstructor @Slf4j
 public class CustomerController {
 

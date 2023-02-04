@@ -1,4 +1,4 @@
-package dev.nano.util;
+package dev.nano.exception.util;
 
 import java.time.format.DateTimeFormatter;
 

@@ -14,10 +14,10 @@
     <module>notification</module>
     <module>payment</module>
     <module>feign-clients</module>
+    <module>exception-handler</module>
     <module>eureka-server</module>
     <module>gateway</module>
     <module>amqp</module>
-      <module>exception-handler</module>
   </modules>
     
   <name>advanced-microservices</name>

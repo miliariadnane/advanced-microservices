@@ -4,13 +4,14 @@ import dev.nano.amqp.RabbitMQProducer;
 import dev.nano.clients.notification.NotificationRequest;
 import dev.nano.clients.order.OrderRequest;
 import dev.nano.clients.product.ProductClient;
+import dev.nano.exception.domain.order.OrderNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static dev.nano.order.OrderConstant.ORDER_NOT_FOUND_EXCEPTION;
+import static dev.nano.exception.constant.ExceptionConstant.ORDER_NOT_FOUND_EXCEPTION_MESSAGE;
 
 @Service
 @AllArgsConstructor
@@ -25,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDTO getOrder(Long id) {
 
         OrderEntity order = orderRepository.findById(id).orElseThrow(() ->
-                new IllegalStateException(ORDER_NOT_FOUND_EXCEPTION));
+                new OrderNotFoundException(ORDER_NOT_FOUND_EXCEPTION_MESSAGE));
 
         return orderMapper.toDTO(order);
     }

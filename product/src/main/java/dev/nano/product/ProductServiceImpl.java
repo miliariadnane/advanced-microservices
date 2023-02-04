@@ -1,5 +1,7 @@
 package dev.nano.product;
 
+import dev.nano.exception.domain.product.InsufficientProductQuantityException;
+import dev.nano.exception.domain.product.ProductNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -10,7 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-import static dev.nano.product.ProductConstant.PRODUCT_NOT_FOUND_EXCEPTION;
+import static dev.nano.exception.constant.ExceptionConstant.PRODUCT_NOT_FOUND_EXCEPTION_MESSAGE;
+import static dev.nano.exception.constant.ExceptionConstant.INSUFFICIENT_PRODUCT_QUANTITY_EXCEPTION_MESSAGE;
+
 
 @Service
 @AllArgsConstructor
@@ -22,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDTO getProduct(long productId) {
         ProductEntity product = productRepository.findById(productId).orElseThrow(() ->
-                new IllegalStateException(PRODUCT_NOT_FOUND_EXCEPTION));
+                new ProductNotFoundException(PRODUCT_NOT_FOUND_EXCEPTION_MESSAGE));
 
         return productMapper.toDTO(product);
     }
@@ -63,10 +67,10 @@ public class ProductServiceImpl implements ProductService {
 
         ProductEntity product
                 = productRepository.findById(productId)
-                .orElseThrow(() -> new IllegalStateException(PRODUCT_NOT_FOUND_EXCEPTION));
+                .orElseThrow(() -> new ProductNotFoundException(PRODUCT_NOT_FOUND_EXCEPTION_MESSAGE));
 
         if(product.getQuantity() < quantity) {
-            throw new IllegalStateException("Product does not have sufficient quantity");
+            throw new InsufficientProductQuantityException(INSUFFICIENT_PRODUCT_QUANTITY_EXCEPTION_MESSAGE);
         }
 
         product.setQuantity(product.getQuantity() - quantity);

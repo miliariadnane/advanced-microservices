@@ -1,4 +1,4 @@
-package dev.nano.domain.order;
+package dev.nano.exception.domain.order;
 
 public class OrderNotFoundException extends RuntimeException {
     public OrderNotFoundException(String message) {
