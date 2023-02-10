@@ -1,4 +1,4 @@
-# 🧺 Sample Store App With Microservice Architecture In Spring Ecosystem 🧺 
+# 🧺 Sample Store App With Microservice Architecture 🧺 
 
 > A practical sample store, built with spring frameworks, kubernetes and deployed on AWS. This is an advanced part based on my previous project [demo-microservices](https://github.com/miliariadnane/demo-microservices) in which I'm focusing on security concerns, resiliency, observability and deployment improvements.
 
@@ -6,7 +6,7 @@
 
 🌀 This Application is `in-progress` and I will add new features over time. 🌀
 
-## Guide 
+## Guide & Documentation
 
 🔜 Coming soon ... 🔜
 
