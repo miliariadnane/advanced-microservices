@@ -141,6 +141,12 @@
                                     <tag>latest</tag>
                                 </tags>
                             </to>
+                            <container>
+                                <environment>
+                                    <ACCESS_KEY_BUCKET>${app.env.var1}</ACCESS_KEY_BUCKET>
+                                    <SECRET_KEY_BUCKET>${app.env.var2}</SECRET_KEY_BUCKET>
+                                </environment>
+                            </container>
                         </configuration>
                         <executions>
                             <execution>
