@@ -1,36 +1,67 @@
-## 1. Self-Preservation in Service Discovery Pattern 
-- 
-- Eureka use `self-preservation` mode to protect itself from the network failure (avoid traps in the network). When the network is unstable, the heartbeat will be failed and Eureka server will mark the instance as DOWN. 
-- Self-preservation refers to the ability of a **single service** to continue functioning even in the face of failures or disruptions. This can be achieved through various strategies such as load balancing, failover, and replication 
-- If the Eureka server is in the self-preservation mode, it will not mark the instance as DOWN, and the client will not be able to get the instance information (will not send requests to the instance), which will reduce the pressure on the instance. 
-- ALso, if a service becomes unavailable, self-preservation mechanisms can be used to redirect traffic to a replica of the service or to a backup service that can take over its responsibilities. This helps to maintain the availability and reliability of the overall system. 
+# 🧺 Sample Store App With Microservice Architecture 🧺 
 
-````yaml
-#Eureka-Client
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-    fetch-registry: true
-    register-with-eureka: true
-  #self-preservation
-  instance:
-    lease-renewal-interval-in-seconds: 30 # default 30 ms
-    # indicates the frequency (in seconds) at which the client sends heartbeats to the server indicating that it's still alive
-    lease-expiration-duration-in-seconds: 90 # default 90 ms
-    # indicates the duration that the server waits for a heartbeat before it removes this instance from its view of the registry
-  server:
-    eviction-interval-timer-in-ms: 60000 # 60 seconds (60 * 1000)
-    # indicates the frequency (in milliseconds) at which the server checks for instances that have not renewed their leases and removes them from the registry
-    renewal-percent-threshold: 0.85 # default 0.85
-    # this value is used to calculate the expected % of heartbeats per minute eureka expects from all clients
-    renewal-threshold-update-interval-ms: 900000 # 900 seconds (15 * 60 * 1000)
-    # A scheduled task runs every 900 seconds to update the threshold
-    enable-self-preservation: true # default true
-````
+> A practical sample store, built with spring frameworks, kubernetes and deployed on AWS. This is an advanced part based on my previous project [demo-microservices](https://github.com/miliariadnane/demo-microservices) in which I'm focusing on security concerns, resiliency, observability and deployment improvements.
 
-`Note:` The self-preservation mode is triggered when the number of available instances is less than 85% of the total number of instances, and it will be turned off when the number of available instances is greater than 95% of the total number of instances. 
+💡 This application is not business oriented and my focus is mostly on technical part, I just want to implement a sample app from scratch with microservice architecture using different technologies, principles and patterns.
 
-- resources : 
-  * [link1](https://medium.com/javarevisited/the-mystery-of-eureka-self-preservation-f2db91454f2d) 
-  * [link2](https://www.baeldung.com/eureka-self-preservation-renewal)
+🌀 This Application is `in-progress` and I will add new features over time. 🌀
+
+## Guide & Documentation
+
+🔜 Coming soon ... 🔜
+
+## Support
+
+If you like my work, feel free to:
+
+- ⭐ this repository. And we will be happy together :)
+
+Thanks a bunch for supporting me!
+
+## Features
+- ✅ Using `Postgres` and `PgAdmin` for database and database management system.
+- ✅ Using docker and `docker-compose` for running the application on local machine, docker, kubernetes and AWS environment.
+- ✅ Using `Event Driven Architecture` on top of RabbitMQ Message Broker.
+- ✅ Using `Prometheus` and `Grafana` for monitoring and metrics.
+- ✅ Using `Sleuth` and `Zipkin` for distributed tracing and logging.
+- ✅ Using `Service Discovery` with `Eureka server` for local development and `Kubernetes` service discovery for production environment.
+- ✅ Using `API Gateway` with `Spring Cloud Gateway` for local development and `Kubernetes load balancer` for production environment.
+- ✅ Using `AWS SES` service for sending emails.
+
+## Roadmap
+- 🚧 Add `Api Key Management` with `Keycloak` for security and authentication.
+- 🚧 Using `Helm` or `Kustomize` for deploying the application on `Kubernetes` cluster.
+- 🚧 Add `Resilience4j` for circuit breaker and fallback.
+- 🚧 Add log aggregation with `ELK` stack.
+- 🚧 Create frontend application with `React` / `Angular`.
+- 🚧 Add `Istio` for service mesh.
+
+## Technologies - Libraries
+
+- ✔️ **[`eureka-server-discovery`](https://spring.io/guides/gs/service-registration-and-discovery/)** - Eureka is a service registry for resilient spring microservices.
+- ✔️ **[`spring-cloud-gateway`](https://cloud.spring.io/spring-cloud-gateway/reference/html/)** - Spring Cloud Gateway is a non-blocking, reactive, based on Spring 5, web server gateway.
+- ✔️ **[`spring-cloud-loadbalancer`](https://spring.io/guides/gs/spring-cloud-loadbalancer/)** - Spring Cloud LoadBalancer is a library that provides a common abstraction over client-side load balancing.
+- ✔️ **[`sleuth-zipkin`](https://cloud.spring.io/spring-cloud-sleuth/reference/html/)** - Distributed tracing with Zipkin and Spring Cloud Sleuth.
+- ✔️ **[`open-feign`](https://cloud.spring.io/spring-cloud-openfeign/reference/html/)** - Declarative REST Client for spring.
+- ✔️ **[`spring-boot-starter-data-jpa`](https://spring.io/projects/spring-data-jpa)** - Spring Data JPA is a layer on top of the JPA API.
+- ✔️ **[`lombok`](https://projectlombok.org/)** - Project Lombok is a java library that automatically plugs into your editor and build tools, spicing up your java.
+- ✔️ **[`amqp-starter`](https://spring.io/projects/spring-amqp)** - Spring AMQP provides an abstraction layer for sending and receiving messages with a message broker.
+- ✔️ **[`rabbitmq`](https://www.rabbitmq.com/)** - RabbitMQ is an open source message broker software that implements the Advanced Message Queuing Protocol (AMQP).
+- ✔️ **[`mapstruct`](https://mapstruct.org/)** - MapStruct is a code generator that greatly simplifies the implementation of mappings between Java bean types based on a convention over configuration approach.
+- ✔️ **[`Junit5`](https://junit.org/junit5/)** - For unit testing and integration testing.
+- ✔️ **[`Mockito`](https://site.mockito.org/)** - For mocking objects in unit tests.
+- ✔️ **[`jib-plugin`](https://github.com/GoogleContainerTools/jib)** - Container image builder that facilitates building container images for your Java applications.
+- ✔️ **[`docker-compose`](https://docs.docker.com/compose/)** - Compose is a tool for defining and running multi-container Docker applications.
+- ✔️ **[`kubernetes`](https://kubernetes.io/)** - Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.
+- ✔️ **[`prometheus`](https://prometheus.io/)** - Prometheus is an open-source systems monitoring and alerting toolkit.
+- ✔️ **[`grafana`](https://grafana.com/)** - Grafana is an open source, feature rich metrics dashboard and graph editor for Graphite, Elasticsearch, OpenTSDB, Prometheus and InfluxDB.
+- ✔️ **[`AWS SES`](https://aws.amazon.com/ses/)** - Amazon Simple Email Service (Amazon SES) is a cloud-based email sending service.
+- ✔️ **[`AWS EKS`](https://aws.amazon.com/eks/)** - Amazon Elastic Kubernetes Service (Amazon EKS) is a managed service that makes it easy for you to run Kubernetes on AWS without needing to install, operate, and maintain your own Kubernetes control plane.
+
+## System Architecture
+
+![](./assets/system-architecture-diagram.png)
+
+## License
+This project is made available under the MIT license. See [LICENSE](https://github.com/miliariadnane/advanced-microservices/blob/main/LICENSE) for details.
+

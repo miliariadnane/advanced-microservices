@@ -15,14 +15,14 @@
     <module>payment</module>
     <module>feign-clients</module>
     <module>exception-handler</module>
+    <module>apiKey-manager</module>
     <module>eureka-server</module>
     <module>gateway</module>
     <module>amqp</module>
   </modules>
     
   <name>advanced-microservices</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>https://github.com/miliariadnane/advanced-microservices</url>
     
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
