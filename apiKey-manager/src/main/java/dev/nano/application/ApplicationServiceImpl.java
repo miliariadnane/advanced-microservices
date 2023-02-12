@@ -2,8 +2,13 @@ package dev.nano.application;
 
 import dev.nano.apikey.ApiKeyEntity;
 import dev.nano.apikey.ApiKeyRepository;
+import dev.nano.exception.domain.apiKeyManager.ApiKeyNotFoundException;
+import dev.nano.exception.domain.apiKeyManager.ApplicationNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import static dev.nano.exception.constant.ExceptionConstant.API_KEY_NOT_FOUND_EXCEPTION_MESSAGE;
+import static dev.nano.exception.constant.ExceptionConstant.APPLICATION_NOT_FOUND_EXCEPTION_MESSAGE;
 
 @Service
 @RequiredArgsConstructor
@@ -13,7 +18,7 @@ public class ApplicationServiceImpl implements ApplicationService{
     @Override
     public void assignApplicationToApiKey(ApplicationName applicationName, String apiKey) {
         ApiKeyEntity key = apiKeyRepository.findByKey(apiKey)
-                .orElseThrow(() -> new RuntimeException("Api key not found"));
+                .orElseThrow(() -> new ApiKeyNotFoundException(API_KEY_NOT_FOUND_EXCEPTION_MESSAGE));
 
         ApplicationEntity application = ApplicationEntity.builder()
                     .applicationName(applicationName)
@@ -29,10 +34,10 @@ public class ApplicationServiceImpl implements ApplicationService{
     @Override
     public void revokeApplicationFromApiKey(String applicationName, String apiKey) {
         if(!apiKeyRepository.doesKeyExists(apiKey))
-            throw new RuntimeException("Api key not found");
+            throw new ApiKeyNotFoundException(API_KEY_NOT_FOUND_EXCEPTION_MESSAGE);
 
         ApplicationEntity application = applicationRepository.findByName(applicationName)
-                .orElseThrow(() -> new RuntimeException("Application not found"));
+                .orElseThrow(() -> new ApplicationNotFoundException(APPLICATION_NOT_FOUND_EXCEPTION_MESSAGE));
 
         application.setRevoked(true);
         application.setEnabled(false);

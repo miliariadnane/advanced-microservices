@@ -3,6 +3,7 @@ package dev.nano.apikey;
 import dev.nano.application.ApplicationEntity;
 import dev.nano.application.ApplicationName;
 import dev.nano.application.ApplicationRepository;
+import dev.nano.exception.domain.apiKeyManager.ApiKeyNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +13,12 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static dev.nano.exception.constant.ExceptionConstant.API_KEY_NOT_FOUND_EXCEPTION_MESSAGE;
+
 @Service
 @RequiredArgsConstructor
 public class ApiKeyServiceImpl implements ApiKeyService {
     private static final Integer EXPIRATION_DAYS = 30;
-
     private final ApiKeyRepository apiKeyRepository;
     private final ApplicationRepository applicationRepository;
     private final KeyGenerator keyGenerator;
@@ -57,7 +59,7 @@ public class ApiKeyServiceImpl implements ApiKeyService {
     @Override
     public void revokeApi(String key) {
         ApiKeyEntity apiKey = apiKeyRepository.findByKey(key).orElseThrow(
-                () -> new RuntimeException("Api key not found"));
+                () -> new ApiKeyNotFoundException(API_KEY_NOT_FOUND_EXCEPTION_MESSAGE));
 
         apiKey.setRevoked(true);
         apiKey.setEnabled(false);

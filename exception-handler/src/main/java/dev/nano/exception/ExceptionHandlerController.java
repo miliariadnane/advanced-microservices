@@ -40,7 +40,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(OrderNotFoundException.class)
     public ResponseEntity<HttpResponse<?>> handleOrderNotFoundException(OrderNotFoundException exception) {
-        return createHttpErrorResponse(HttpStatus.NOT_FOUND, ACCOUNT_NOT_FOUND_EXCEPTION_MESSAGE, exception);
+        return createHttpErrorResponse(HttpStatus.NOT_FOUND, ORDER_NOT_FOUND_EXCEPTION_MESSAGE, exception);
     }
 
     @ExceptionHandler(CustomerNotFoundException.class)
