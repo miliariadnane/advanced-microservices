@@ -4,13 +4,14 @@ import dev.nano.amqp.RabbitMQProducer;
 import dev.nano.clients.notification.NotificationRequest;
 import dev.nano.clients.order.OrderClient;
 import dev.nano.clients.payment.PaymentRequest;
+import dev.nano.exception.domain.payment.PaymentNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static dev.nano.payment.PaymentConstant.PAYMENT_NOT_FOUND_EXCEPTION;
+import static dev.nano.exception.constant.ExceptionConstant.PAYMENT_NOT_FOUND_EXCEPTION_MESSAGE;
 
 @Service
 @AllArgsConstructor
@@ -24,7 +25,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentDTO getPayment(Long paymentId) {
         PaymentEntity payment = paymentRepository.findById(paymentId).orElseThrow(() ->
-                new IllegalStateException(PAYMENT_NOT_FOUND_EXCEPTION));
+                new PaymentNotFoundException(PAYMENT_NOT_FOUND_EXCEPTION_MESSAGE));
 
         return paymentMapper.toDTO(payment);
     }

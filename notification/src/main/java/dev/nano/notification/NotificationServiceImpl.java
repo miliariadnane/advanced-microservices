@@ -1,12 +1,15 @@
 package dev.nano.notification;
 
 import dev.nano.clients.notification.NotificationRequest;
+import dev.nano.exception.domain.notification.NotificationNotFoundException;
 import dev.nano.notification.aws.AWSEmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static dev.nano.exception.constant.ExceptionConstant.NOTIFICATION_NOT_FOUND_EXCEPTION_MESSAGE;
 
 @Service
 @AllArgsConstructor
@@ -20,7 +23,7 @@ public class NotificationServiceImpl implements NotificationService {
     public NotificationDTO getNotification(Long notificationId) {
 
         NotificationEntity product = notificationRepository.findById(notificationId).orElseThrow(() ->
-                new IllegalStateException("Notification not found"));
+                new NotificationNotFoundException(NOTIFICATION_NOT_FOUND_EXCEPTION_MESSAGE));
 
         return notificationMapper.toDTO(product);
     }
@@ -54,7 +57,6 @@ public class NotificationServiceImpl implements NotificationService {
         return """
                 Mail sent to: ${name}
                 <p>${message}</p>
-        """;
-
+        """.formatted(name, message);
     }
 }

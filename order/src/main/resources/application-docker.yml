@@ -1,8 +1,6 @@
 #Spring
 server:
   port: 8003
-  servlet:
-    context-path: /order
   error:
       include-message: always
 #Management
@@ -34,6 +32,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+  profiles:
+    active: docker
 #Eureka-Client
 eureka:
   client:

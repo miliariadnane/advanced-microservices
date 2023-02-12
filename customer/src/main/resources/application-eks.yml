@@ -1,8 +1,6 @@
 #Server
 server:
   port: 8001
-  servlet:
-    context-path: /customer
   error:
     include-message: always
 #Management

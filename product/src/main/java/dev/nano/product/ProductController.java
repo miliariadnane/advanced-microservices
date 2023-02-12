@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static dev.nano.product.ProductConstant.PRODUCT_URI_REST_API;
-
 @RestController
-@RequestMapping(path = PRODUCT_URI_REST_API)
+@RequestMapping(path = ProductConstant.PRODUCT_URI_REST_API)
 @AllArgsConstructor @Slf4j
 public class ProductController {
 

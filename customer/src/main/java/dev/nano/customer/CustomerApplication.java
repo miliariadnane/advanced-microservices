@@ -10,7 +10,8 @@ import org.springframework.context.annotation.PropertySources;
 @SpringBootApplication(
         scanBasePackages = {
                 "dev.nano.customer",
-                "dev.nano.amqp"
+                "dev.nano.amqp",
+                "dev.nano.exception-handler"
         }
 )
 @EnableFeignClients(

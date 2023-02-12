@@ -1,6 +1,6 @@
 #Server
 server:
-  port: 8006
+  port: 8088
 #Management
 management:
   endpoints:
@@ -22,23 +22,25 @@ spring:
         - id: customer
           uri: lb://CUSTOMER
           predicates:
-              - Path=/customer/api/v1/customers/**
+              - Path=/api/v1/customers/**
         - id: product
           uri: lb://PRODUCT
           predicates:
-              - Path=/product/api/v1/products/**
+              - Path=/api/v1/products/**
         - id: order
           uri: lb://ORDER
           predicates:
-              - Path=/order/api/v1/orders/**
+              - Path=/api/v1/orders/**
         - id: payment
           uri: lb://PAYMENT
           predicates:
-              - Path=/payment/api/v1/payments/**
+              - Path=/api/v1/payments/**
         - id: notification
           uri: lb://NOTIFICATION
           predicates:
-              - Path=/notification/api/v1/notifications/**
+              - Path=/api/v1/notifications/**
+  profiles:
+    active: docker
 #Eureka-Client
 eureka:
   client:

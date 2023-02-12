@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CustomerService {
 
-    CustomerDTO getCustomer(Long id) throws CustomerNotFoundException;
+    CustomerDTO getCustomer(Long id);
     List<CustomerDTO> getAllCustomers();
     CustomerDTO createCustomer(CustomerDTO customer);
     CustomerDTO updateCustomer(Long id, CustomerDTO customer);

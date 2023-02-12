@@ -1,8 +1,6 @@
 #Server
 server:
   port: 8005
-  servlet:
-    context-path: /payment
   error:
       include-message: always
 #Management
@@ -34,6 +32,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+  profiles:
+    active: default
 #Eureka-Client
 eureka:
   client:
