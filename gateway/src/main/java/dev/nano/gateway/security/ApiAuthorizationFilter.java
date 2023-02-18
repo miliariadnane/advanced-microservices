@@ -1,5 +1,6 @@
 package dev.nano.gateway.security;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.route.Route;
@@ -15,6 +16,15 @@ import java.util.List;
 
 @Component
 public class ApiAuthorizationFilter implements GlobalFilter, Ordered {
+
+    private final ApiKeyAuthorizationChecker apiKeyAuthorizationChecker;
+
+    public ApiAuthorizationFilter(
+            @Qualifier("main-checker") ApiKeyAuthorizationChecker apiKeyAuthorizationChecker
+    ) {
+        this.apiKeyAuthorizationChecker = apiKeyAuthorizationChecker;
+    }
+
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
