@@ -3,11 +3,9 @@ package dev.nano.apikey;
 import dev.nano.application.ApplicationName;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
 public interface ApiKeyRepository extends JpaRepository<ApiKeyEntity, Long> {
     @Query("""
         SELECT ak FROM ApiKeyEntity ak

@@ -36,7 +36,7 @@ public class ApplicationServiceImpl implements ApplicationService{
         if(!apiKeyRepository.doesKeyExists(apiKey))
             throw new ApiKeyNotFoundException(API_KEY_NOT_FOUND_EXCEPTION_MESSAGE);
 
-        ApplicationEntity application = applicationRepository.findByName(applicationName)
+        ApplicationEntity application = applicationRepository.findByApplicationName(applicationName)
                 .orElseThrow(() -> new ApplicationNotFoundException(APPLICATION_NOT_FOUND_EXCEPTION_MESSAGE));
 
         application.setRevoked(true);
