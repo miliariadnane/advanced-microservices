@@ -1,6 +1,6 @@
 #Server
 server:
-  port: 8088
+  port: 8765
 #Management
 management:
   endpoints:
@@ -22,7 +22,7 @@ spring:
         - id: customer
           uri: lb://CUSTOMER # lb = load balancer
           predicates:
-              - Path=/api/v1/customers/**
+            - Path=/api/v1/customers/**
         - id: product
           uri: lb://PRODUCT
           predicates:
