@@ -12,8 +12,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = PaymentConstant.PAYMENT_URI_REST_API)
-@AllArgsConstructor
-@Slf4j
+@AllArgsConstructor @Slf4j
+@CrossOrigin
 public class PaymentController {
 
     private final PaymentService paymentService;

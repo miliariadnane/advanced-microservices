@@ -1,28 +1,32 @@
 package dev.nano.notification.config;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import org.springdoc.core.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
 
 import static dev.nano.notification.config.ConfigConstant.*;
 
 @Configuration
 public class SwaggerConfig {
     @Bean
-    public Docket api() throws IndexOutOfBoundsException {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage(SWAGGER_CONFIG_BASE_PACKAGE))
-                .paths(PathSelectors.any())
-                .build().apiInfo(
-                        new ApiInfo(
-                                SWAGGER_CONFIG_TITLE,
-                                SWAGGER_CONFIG_DESCRIPTION,
-                                SWAGGER_CONFIG_VERSION, null,
-                                SWAGGER_CONTACT_CONTACT_NAME, null, null));
+    public GroupedOpenApi publicApi() {
+        return GroupedOpenApi.builder()
+                .group(SWAGGER_GROUP_NAME)
+                .packagesToScan(SWAGGER_CONFIG_BASE_PACKAGE)
+                .build();
+    }
+
+    @Bean
+    public OpenAPI springShopOpenAPI() {
+        return new OpenAPI()
+                .info(new Info().title(SWAGGER_CONFIG_TITLE)
+                        .description(SWAGGER_CONFIG_DESCRIPTION)
+                        .version(SWAGGER_CONFIG_VERSION)
+                        .contact(new Contact().name(SWAGGER_CONTACT_CONTACT_NAME))
+                        .license(new License().name(SWAGGER_LICENSE_NAME).url(SWAGGER_LICENSE_URL)));
     }
 }

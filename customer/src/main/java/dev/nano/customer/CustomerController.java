@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = CustomerConstant.CUSTOMER_URI_REST_API)
 @AllArgsConstructor @Slf4j
+@CrossOrigin
 public class CustomerController {
 
     private final CustomerService customerService;

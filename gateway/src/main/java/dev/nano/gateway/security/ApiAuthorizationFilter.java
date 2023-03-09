@@ -13,7 +13,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
-
+/*
 @Component
 public class ApiAuthorizationFilter implements GlobalFilter, Ordered {
 
@@ -47,3 +47,4 @@ public class ApiAuthorizationFilter implements GlobalFilter, Ordered {
         return Ordered.LOWEST_PRECEDENCE; // lowest priority filter
     }
 }
+*/

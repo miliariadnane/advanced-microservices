@@ -1,30 +1,25 @@
 package dev.nano.gateway.config;
 
+import org.springdoc.core.SwaggerUiConfigParameters;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.cloud.gateway.route.RouteDefinition;
+import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.swagger.web.*;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.Objects;
 
 @Configuration
-@EnableSwagger2
 public class SwaggerConfig {
     @Bean
-    UiConfiguration uiConfig() {
-        return UiConfigurationBuilder.builder()
-                .deepLinking(true)
-                .displayOperationId(false)
-                .defaultModelsExpandDepth(1)
-                .defaultModelExpandDepth(1)
-                .defaultModelRendering(ModelRendering.EXAMPLE)
-                .displayRequestDuration(false)
-                .docExpansion(DocExpansion.NONE)
-                .filter(false)
-                .maxDisplayedTags(null)
-                .operationsSorter(OperationsSorter.ALPHA)
-                .showExtensions(false)
-                .tagsSorter(TagsSorter.ALPHA)
-                .supportedSubmitMethods(UiConfiguration.Constants.DEFAULT_SUBMIT_METHODS)
-                .validatorUrl(null)
-                .build();
+    public CommandLineRunner openApiGroups(
+            RouteDefinitionLocator locator,
+            SwaggerUiConfigParameters swaggerUiParameters) {
+        return args -> Objects.requireNonNull(locator
+                        .getRouteDefinitions().collectList().block())
+                .stream()
+                .map(RouteDefinition::getId)
+                .forEach(swaggerUiParameters::addGroup);
+
     }
 }

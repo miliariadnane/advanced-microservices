@@ -16,6 +16,9 @@ management:
 spring:
   application:
     name: customer
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   datasource:
     url: jdbc:postgresql://localhost:5432/customer
     username: postgres

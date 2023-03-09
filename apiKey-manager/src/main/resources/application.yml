@@ -15,7 +15,7 @@ management:
 #Spring
 spring:
   application:
-    name: customer
+    name: apiKey-manager
   datasource:
     url: jdbc:postgresql://localhost:5432/apiKey-manager
     username: postgres

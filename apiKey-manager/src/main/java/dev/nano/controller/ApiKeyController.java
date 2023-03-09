@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = ApiKeyConstant.API_KEY_URI_REST_API)
 @AllArgsConstructor @Slf4j
+@CrossOrigin
 public class ApiKeyController {
     private final ApiKeyService apiKeyService;
 

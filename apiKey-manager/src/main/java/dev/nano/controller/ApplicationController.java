@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = ApplicationConstant.APPLICATION_URI_REST_API)
 @AllArgsConstructor @Slf4j
+@CrossOrigin
 public class ApplicationController {
     private final ApplicationService applicationService;
 
