@@ -21,8 +21,8 @@ public class InMemoryApiKeyAuthorizationCheckerImpl implements ApiKeyAuthorizati
     //static String requiredProperty1 = environment.getRequiredProperty(IN_MEMORY_API_KEY_1);
     //static String requiredProperty2 = environment.getRequiredProperty(IN_MEMORY_API_KEY_2);
     private static final Map<String, List<String>> apiKeys = Map.of(
-            IN_MEMORY_API_KEY_1, List.of("CUSTOMER", "PRODUCT", "NOTIFICATION"),
-            IN_MEMORY_API_KEY_2, List.of("PAYMENT", "ORDER")
+            IN_MEMORY_API_KEY_1, List.of("CUSTOMER", "PRODUCT", "NOTIFICATION", "ORDER", "APIKEY-MANAGER"),
+            IN_MEMORY_API_KEY_2, List.of("PAYMENT")
     );
 
     @Override

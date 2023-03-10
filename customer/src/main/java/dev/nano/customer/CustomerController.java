@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor @Slf4j
 @CrossOrigin
 public class CustomerController {
-
     private final CustomerService customerService;
 
     @GetMapping(
