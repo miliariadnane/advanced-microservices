@@ -1,5 +1,8 @@
-package dev.nano.application;
+package dev.nano.controller;
 
+import dev.nano.application.ApplicationConstant;
+import dev.nano.application.ApplicationName;
+import dev.nano.application.ApplicationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = ApplicationConstant.APPLICATION_URI_REST_API)
 @AllArgsConstructor @Slf4j
+@CrossOrigin
 public class ApplicationController {
     private final ApplicationService applicationService;
 

@@ -1,13 +1,12 @@
 package dev.nano.apikey;
 
-import javax.persistence.*;
-
 import dev.nano.application.ApplicationEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 

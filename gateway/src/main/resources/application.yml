@@ -1,6 +1,6 @@
 #Server
 server:
-  port: 8088
+  port: 8765
 #Management
 management:
   endpoints:
@@ -22,25 +22,30 @@ spring:
         - id: customer
           uri: lb://CUSTOMER # lb = load balancer
           predicates:
-              - Path=/api/v1/customers/**
+            - Path=/api/v1/customers/**, /v3/api-docs/customer, /swagger-ui/**, /swagger-ui.html
         - id: product
           uri: lb://PRODUCT
           predicates:
-              - Path=/api/v1/products/**
+            - Path=/api/v1/products/**, /v3/api-docs/product, /swagger-ui/**, /swagger-ui.html
         - id: order
           uri: lb://ORDER
           predicates:
-              - Path=/api/v1/orders/**
+            - Path=/api/v1/orders/**, /v3/api-docs/order, /swagger-ui/**, /swagger-ui.html
         - id: payment
           uri: lb://PAYMENT
           predicates:
-            - Path=/api/v1/payments/**
+            - Path=/api/v1/payments/**, /v3/api-docs/payment, /swagger-ui/**, /swagger-ui.html
         - id: notification
           uri: lb://NOTIFICATION
           predicates:
-              - Path=/api/v1/notifications/**
+            - Path=/api/v1/notifications/**, /v3/api-docs/notification, /swagger-ui/**, /swagger-ui.html
+        - id: apiKey-manager
+          uri: lb://APIKEY-MANAGER
+          predicates:
+            - Path=/api/v1/apiKey-manager/**, /v3/api-docs/**, /swagger-ui/**, /swagger-ui.html
   profiles:
     active: default
+
 #Eureka-Client
 eureka:
   client:

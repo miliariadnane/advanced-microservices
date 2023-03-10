@@ -1,5 +1,6 @@
 package dev.nano.gateway.security;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.route.Route;
@@ -12,9 +13,18 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
-
+/*
 @Component
 public class ApiAuthorizationFilter implements GlobalFilter, Ordered {
+
+    private final ApiKeyAuthorizationChecker apiKeyAuthorizationChecker;
+
+    public ApiAuthorizationFilter(
+            @Qualifier("main-checker") ApiKeyAuthorizationChecker apiKeyAuthorizationChecker
+    ) {
+        this.apiKeyAuthorizationChecker = apiKeyAuthorizationChecker;
+    }
+
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
@@ -37,3 +47,4 @@ public class ApiAuthorizationFilter implements GlobalFilter, Ordered {
         return Ordered.LOWEST_PRECEDENCE; // lowest priority filter
     }
 }
+*/

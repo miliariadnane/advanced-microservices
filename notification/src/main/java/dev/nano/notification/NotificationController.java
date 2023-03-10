@@ -15,6 +15,7 @@ import static dev.nano.notification.NotificationConstant.NOTIFICATION_URI_REST_A
 @RestController
 @RequestMapping(path = NOTIFICATION_URI_REST_API)
 @AllArgsConstructor @Slf4j
+@CrossOrigin
 public class NotificationController {
 
     private final NotificationService notificationService;

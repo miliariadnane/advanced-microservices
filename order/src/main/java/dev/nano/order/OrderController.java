@@ -12,8 +12,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = OrderConstant.ORDER_URI_REST_API)
-@AllArgsConstructor
-@Slf4j
+@AllArgsConstructor @Slf4j
+@CrossOrigin
 public class OrderController {
 
     private final OrderService orderService;

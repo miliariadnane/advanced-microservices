@@ -1,6 +1,6 @@
 #Server
 server:
-  port: 8088
+  port: 8765
 #Management
 management:
   endpoints:

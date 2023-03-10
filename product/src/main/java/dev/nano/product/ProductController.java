@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = ProductConstant.PRODUCT_URI_REST_API)
 @AllArgsConstructor @Slf4j
+@CrossOrigin
 public class ProductController {
 
     private final ProductService productService;

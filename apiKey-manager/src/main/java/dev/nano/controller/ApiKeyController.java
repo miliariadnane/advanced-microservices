@@ -1,5 +1,8 @@
-package dev.nano.apikey;
+package dev.nano.controller;
 
+import dev.nano.apikey.ApiKeyConstant;
+import dev.nano.apikey.ApiKeyRequest;
+import dev.nano.apikey.ApiKeyService;
 import dev.nano.application.ApplicationName;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = ApiKeyConstant.API_KEY_URI_REST_API)
 @AllArgsConstructor @Slf4j
+@CrossOrigin
 public class ApiKeyController {
     private final ApiKeyService apiKeyService;
 

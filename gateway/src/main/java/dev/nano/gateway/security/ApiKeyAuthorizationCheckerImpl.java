@@ -1,6 +1,5 @@
 package dev.nano.gateway.security;
 
-import dev.nano.clients.apiKeyManager.ApplicationName;
 import dev.nano.clients.apiKeyManager.apiKey.ApiKeyManagerClient;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

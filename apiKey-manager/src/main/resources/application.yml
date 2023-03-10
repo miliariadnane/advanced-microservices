@@ -15,7 +15,7 @@ management:
 #Spring
 spring:
   application:
-    name: customer
+    name: apiKey-manager
   datasource:
     url: jdbc:postgresql://localhost:5432/apiKey-manager
     username: postgres
@@ -24,7 +24,7 @@ spring:
     base-url: http://localhost:9411
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
